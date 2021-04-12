@@ -22,6 +22,11 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 ROBOTSTXT_OBEY = False
 
 HTTPERROR_ALLOWED_CODES  =[404]
+
+#Export as CSV Feed
+FEED_FORMAT = "csv"
+FEED_URI = "output.csv"
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
