@@ -3,7 +3,7 @@ import json5
 
 
 class XqbotSpider(scrapy.Spider):
-    name = 'xqbot'
+    name = 'dmt'
     allowed_domains = ['www.xueqiu.com']
     start_urls = ['https://xueqiu.com/P/ZH2126346',
                 'https://xueqiu.com/P/ZH2268976',
