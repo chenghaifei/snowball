@@ -1,12 +1,13 @@
 import scrapy
 import json5
+from scrapy.utils.response import open_in_browser
+from scrapy.shell import inspect_response
 
 
 class XqbotSpider(scrapy.Spider):
     name = 'ttgain'
     allowed_domains = ['www.xueqiu.com']
-    start_urls = ['https://xueqiu.com/cubes/nav_daily/all.json?cube_symbol=ZH2126346',
-           #     'https://xueqiu.com/P/ZH2268976',
+    start_urls = ['https://xueqiu.com/P/ZH2126346',
     ]
 
     def parse(self, response):
@@ -19,13 +20,24 @@ class XqbotSpider(scrapy.Spider):
                    'X-Requested-With': 'XMLHttpRequest',
                    #'Content-Length': 246,
                    'Connection': 'keep-alive',
+                   'Host': 'xueqiu.com',
+                   'Pragma': 'no-cache'
                    }
-        yield scrapy.Request(
+        #params = {"filters": []}
+        req = scrapy.Request(
             url = 'https://xueqiu.com/cubes/nav_daily/all.json?cube_symbol=ZH2126346',
-            method = 'POST',
+            #url = '/cubes/nav_daily/all.json?cube_symbol=ZH2126346',
+            method = 'GET',
             headers = headers,
             callback = self.parse_ajax
         )
-        
+        print(' test again to see  /////////////////////////////// happens')
+        print(req)
+
     def parse_ajax(self, response):
-        yield {'data': response.text}
+        # yield {'data': response.text}
+        inspect_response(response, self)
+        self.logger.info("Visited %s", response.url)
+        print('this is a ***********************************  !!!')
+        #print(response.text)
+        #open_in_browser(response)
